@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="dao.ArticleDao">
+    <select id="selectAll" resultType="po.Article">
+              select *from article
+    </select>
+    <select id="selectById" resultType="po.Article" parameterType="int">
+        SELECT *from article WHERE id=#{id}
+    </select>
+    <select id="selectByCategoryId" parameterType="int" resultType="po.Article">
+        select *from article where categoryId=#{id}
+    </select>
+    <select id="selectLike" parameterType="string" resultType="po.Article">
+        SELECT *from article where title  like"%"#{name}"%"
+    </select>
+</mapper>
