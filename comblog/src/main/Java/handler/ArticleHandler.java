@@ -90,5 +90,10 @@ public class ArticleHandler {
         m.addAttribute("articles",l);
         return "views/index.jsp";
     }
+    @RequestMapping(value = "demo.do")
+    public String demo()
+    {
+        return "views/demo.jsp";
+    }
 
 }
