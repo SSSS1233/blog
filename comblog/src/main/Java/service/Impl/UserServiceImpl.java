@@ -36,7 +36,6 @@ public class UserServiceImpl implements UserService {
 
 
     public void updateArticle(Article article) {
-        System.out.println(article);
         userDao.updateArticle(article);
     }
 
