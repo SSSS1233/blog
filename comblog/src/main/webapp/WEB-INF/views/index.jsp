@@ -13,17 +13,21 @@
 <%--<%@include file="comm/top.jsp" %>--%>
 <jsp:include page="comm/top.jsp"/>
 
-<c:forEach var="article" items="${articles}" begin="0" step="1">
-    <div class="row">
-        <div class="container">
-            <div class="jumbotron">
+
+    <div class="row" id="row">
+
+        <div class="container" id="container">
+            <c:forEach var="article" items="${articles}" begin="0" step="1">
+            <div class="jumbotron" id="jumbotron">
                 <h3>${article.title}</h3>
                 <span class="summary">${article.summary}</span><br><br>
                 <p><a class="btn btn-primary btn-lg" href="detail.do?id=${article.id}"
                       role="button">阅读全文</a></p>
             </div>
+            </c:forEach>
         </div>
+
     </div>
-</c:forEach>
+
 </body>
 </html>

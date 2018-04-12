@@ -6,11 +6,14 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 import po.Article;
 import service.ArticleService;
 import service.Impl.ArticleServiceImpl;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 /**
  * Created by Intellij IDEA.
@@ -45,12 +48,17 @@ public class ArticleHandler {
      * @param id
      * @return
      */
+    @ResponseBody
     @RequestMapping(value = "classification.do")
-    public String selectClassification(Model m,int id)
+    public Map<String,Object> selectClassification(Model m, int id)
     {
         List<Article> l=articleService.selectByCategoryId(id);
+        Map<String,Object> map=new HashMap<String, Object>();
         m.addAttribute("articles",l);
-        return "views/index.jsp";
+        m.addAttribute("length",l.size());
+        map.put("articles",l);
+        map.put("length",l.size());
+        return map;
     }
     /**
      * 阅读全文
@@ -82,13 +90,17 @@ public class ArticleHandler {
      * @param m
      * @return
      */
+    @ResponseBody
     @RequestMapping("selectlike.do")
-    public String selectLike(Model m,String title)
+    public Map<String,Object> selectLike(Model m,String title)
     {
         System.out.println(title);
+        Map<String,Object> map=new HashMap<String, Object>();
         List<Article> l=articleService.selectLike(title);
         m.addAttribute("articles",l);
-        return "views/index.jsp";
+        map.put("articles",l);
+        map.put("length",l.size());
+        return map;
     }
     @RequestMapping(value = "demo.do")
     public String demo()
