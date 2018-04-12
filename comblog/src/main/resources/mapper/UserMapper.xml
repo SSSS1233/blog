@@ -21,4 +21,7 @@
   <select id="selectId" parameterType="string" resultType="int">
     SELECT  id from category where display_name=#{name}
   </select>
+  <insert id="insertArticle" parameterType="po.Article">
+     INSERT INTO article VALUE(null,#{title},#{content},#{categoryid},#{summary},#{date})
+  </insert>
 </mapper>

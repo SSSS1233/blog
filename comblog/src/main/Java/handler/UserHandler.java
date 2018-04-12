@@ -14,6 +14,7 @@ import service.Impl.ArticleServiceImpl;
 import service.Impl.UserServiceImpl;
 import service.UserService;
 
+import java.sql.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -94,15 +95,31 @@ public class UserHandler {
    public String updates(Model m,String title,String content,String category,int id)
    {
        //System.out.println(content+"###"+title+"###"+category);
-       int ids=userService.selectId(category);
-       System.out.println("id="+id);
-       Article article=new Article();
+       Article article = new Article();
        article.setContent(content);
+       int ids = userService.selectId(category);
        article.setCategoryid(ids);
        article.setTitle(title);
-       article.setId(id);
-       System.out.println(article);
-       userService.updateArticle(article);
+       if(id>0) {
+           System.out.println("id=" + id);
+           article.setId(id);
+           System.out.println(article);
+           userService.updateArticle(article);
+       }
+       else {
+           article.setSummary(title);
+           Date time= new java.sql.Date(new java.util.Date().getTime());
+           article.setDate(time);
+           userService.insertArticle(article);
+       }
        return "redirect:/admin/Adminselect.do";
    }
+   @RequestMapping(value = "write.do")
+    public String  write(Model m)
+   {
+       List<Category> categories=userService.selectdisplayNameAll();
+       m.addAttribute("categories",categories);
+       return "admin/write.jsp";
+   }
+
 }

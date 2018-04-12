@@ -27,4 +27,6 @@ public interface UserService {
     List<Category> selectdisplayNameAll();
 
     int selectId(String name);
+
+    void insertArticle(Article article);
 }

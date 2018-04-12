@@ -28,4 +28,6 @@ public interface UserDao {
 
     int selectId(String name);
 
+    void insertArticle(Article article);
+
 }

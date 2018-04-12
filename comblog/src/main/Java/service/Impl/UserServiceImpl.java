@@ -12,7 +12,6 @@ import service.UserService;
 import java.util.List;
 
 
-
 /**
  * Created by Intellij IDEA.
  *
@@ -52,5 +51,9 @@ public class UserServiceImpl implements UserService {
 
     public int selectId(String name) {
         return userDao.selectId(name);
+    }
+
+    public void insertArticle(Article article) {
+        userDao.insertArticle(article);
     }
 }

@@ -48,6 +48,7 @@
                     <input name="category" id="cateoryInput" type="hidden" value="${category.display_name}">
                     <c:choose>
                         <c:when test="${article==null}">
+                            <input name="id" type="hidden" value="-1">
                             <input type="text" class="form-control" placeholder="标题" name="title">
                         </c:when>
                         <c:otherwise>
